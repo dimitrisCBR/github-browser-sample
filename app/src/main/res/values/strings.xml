@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GithubBrowserSample</string>
+    <string name="favourite">favorite</string>
+</resources>
