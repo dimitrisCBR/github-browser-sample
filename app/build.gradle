@@ -42,14 +42,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.1'
     }
-    packaging {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
 }
 
 dependencies {
+
+    implementation project(":domain")
+    implementation project(":commons")
 
     // Core Kotlin & Android X
     implementation libs.kotlin.stdlib
@@ -58,8 +56,6 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.core.splash
     implementation libs.androidx.lifecycle.runtime.ktx
-    implementation libs.androidx.datastore.core
-    implementation libs.androidx.datastore.prefs
     implementation libs.androidx.paging.runtime
     implementation libs.androidx.paging.compose
     implementation libs.androidx.material3
@@ -75,20 +71,8 @@ dependencies {
 
     // DI Hilt
     implementation libs.hilt.android.core
-    kapt libs.hilt.compiler
-
-    // Networking
-    implementation libs.retrofit.runtime
-    implementation libs.retrofit.gson
-    implementation libs.okhttp
-    implementation libs.okhttp.logging
-
-    // DB Room
-    implementation libs.room.runtime
-    implementation libs.room.ktx
-    implementation libs.room.paging
     implementation libs.hilt.navigation.compose
-    kapt libs.room.compiler
+    kapt libs.hilt.compiler
 
     // Third party
     implementation libs.glide

@@ -7,9 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import xyz.cbrlabs.githubbrowsersample.data.GithubRepository
-import xyz.cbrlabs.githubbrowsersample.domain.api.model.GithubRepoItem
-import xyz.cbrlabs.githubbrowsersample.ui.Result
+import xyz.cbrlabs.githubbrowsersample.commons.Result
+import xyz.cbrlabs.githubbrowsersample.domain.data.GithubRepository
+import xyz.cbrlabs.githubbrowsersample.domain.model.Repo
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,14 +23,14 @@ class DetailsViewModel @Inject constructor(
     fun loadGithubRepo(repoOwner: String, repoName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _mutableStateFlow.value = _mutableStateFlow.value.copy(isLoading = true)
-            try {
-                val result = githubRepository.loadRepo(repoOwner, repoName)
+            val result = githubRepository.loadRepo(repoOwner, repoName)
+            if (result is Result.Success) {
                 _mutableStateFlow.emit(
-                    _mutableStateFlow.value.copy(isLoading = false, repo = result)
+                    _mutableStateFlow.value.copy(isLoading = false, repo = result.data, error = null)
                 )
-            } catch (t : Throwable) {
+            } else if (result is Result.Error) {
                 _mutableStateFlow.emit(
-                    _mutableStateFlow.value.copy(isLoading = false, error = t)
+                    _mutableStateFlow.value.copy(isLoading = false, repo = null, error = result.error)
                 )
             }
         }
@@ -40,6 +40,6 @@ class DetailsViewModel @Inject constructor(
 
 data class DetailState(
     val isLoading: Boolean = false,
-    val repo: GithubRepoItem? = null,
+    val repo: Repo? = null,
     val error: Throwable? = null,
 )

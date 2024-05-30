@@ -1,0 +1,58 @@
+plugins {
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
+}
+
+android {
+    namespace 'xyz.cbrlabs.githubbrowsersample.domain'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation project(":db")
+    implementation project(":network")
+    implementation project(":commons")
+
+    // Core Kotlin
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.coroutines.core
+    implementation libs.kotlin.coroutines.android
+
+    //Datastore
+    implementation libs.androidx.datastore.prefs
+
+    // Room
+    compileOnly libs.room.runtime
+    compileOnly libs.room.ktx
+
+    // Hilt
+    compileOnly libs.hilt.android.core
+    kapt libs.hilt.compiler
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

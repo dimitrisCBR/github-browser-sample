@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import xyz.cbrlabs.githubbrowsersample.domain.api.model.GithubOwner
+import xyz.cbrlabs.githubbrowsersample.domain.model.Owner
 import xyz.cbrlabs.githubbrowsersample.ui.components.common.ErrorScreen
 import xyz.cbrlabs.githubbrowsersample.ui.components.common.GlideImageView
 import xyz.cbrlabs.githubbrowsersample.ui.components.common.Loader
@@ -89,7 +89,7 @@ fun DetailsScreen(
                     repo.license?.let { license ->
                         SectionTitle("License")
                         Text(
-                            text = license.name,
+                            text = license.name ?: "N/A",
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(bottom = 24.dp)
                         )
@@ -104,7 +104,7 @@ fun DetailsScreen(
                     // Description Section
                     SectionTitle("Description")
                     Text(
-                        text = repo.description,
+                        text = repo.description ?: "N/A",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(bottom = 24.dp)
                     )
@@ -133,7 +133,7 @@ fun DetailsScreen(
 }
 
 @Composable
-fun OwnerInfo(owner: GithubOwner) {
+fun OwnerInfo(owner: Owner) {
     Row(
         verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 16.dp)
     ) {
@@ -144,7 +144,7 @@ fun OwnerInfo(owner: GithubOwner) {
             color = MaterialTheme.colorScheme.surface
         ) {
             GlideImageView(
-                url = owner.avatarUrl, contentDescription = "User avatar", modifier = Modifier.fillMaxSize()
+                url = owner.avatar, contentDescription = "User avatar", modifier = Modifier.fillMaxSize()
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
@@ -153,7 +153,7 @@ fun OwnerInfo(owner: GithubOwner) {
                 text = owner.name, style = MaterialTheme.typography.bodyLarge, fontSize = 16.sp
             )
             Text(
-                text = owner.url, style = MaterialTheme.typography.bodyMedium, fontSize = 12.sp
+                text = owner.profileLink, style = MaterialTheme.typography.bodyMedium, fontSize = 12.sp
             )
         }
     }

@@ -19,10 +19,12 @@ retrofit = "2.9.0"
 room = "2.6.1"
 timber = "5.0.1"
 glide = "1.0.0-beta01"
+gson = "2.11.0"
 
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+appcompat = "1.6.1"
 
 [libraries]
 #kotlin
@@ -71,6 +73,7 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 glide = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide" }
+gson = { group = "com.google.code.gson", name="gson", version.ref ="gson"}
 
 ## test
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
@@ -78,10 +81,12 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 

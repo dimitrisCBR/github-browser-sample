@@ -25,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import xyz.cbrlabs.githubbrowsersample.domain.api.model.GithubRepoItem
 import xyz.cbrlabs.githubbrowsersample.domain.model.Repo
 import xyz.cbrlabs.githubbrowsersample.ui.components.common.GlideImageView
 

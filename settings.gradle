@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "GithubBrowserSample"
 include ':app'
+include ':domain'
+include ':db'
+include ':network'
+include ':commons'
